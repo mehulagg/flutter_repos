@@ -5,7 +5,9 @@ image:
 tasks:
 - init: >
     flutter upgrade
-
+    ./skysend-linux.bin d https://skysend.hns.siasky.net/#b-CAC5pl0IkbI0l5GWI8eCjAm6e3toD6e9BpUH2s9z347AXA+eCQNBSt5g3UWLlyNiDz30MsalpC2KuzVz75jXl4eG8AQbL8nTOZSgVpp41XymkKz
+    unzip Android.zip
+    mv Android /home/gitpod
 vscode:
   extensions:
     - dart-code.flutter
