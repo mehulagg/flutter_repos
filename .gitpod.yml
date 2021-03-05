@@ -1,6 +1,13 @@
+
 image:
   file: .gitpod.Dockerfile
 
 tasks:
 - init: >
     flutter upgrade
+
+vscode:
+  extensions:
+    - dart-code.flutter
+    - dart-code.dart-code
+    - pkief.material-icon-theme
