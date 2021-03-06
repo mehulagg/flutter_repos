@@ -11,8 +11,6 @@ tasks:
       unzip Android.zip
       rm Android.zip
       mv Android /home/gitpod
-      yes | sdk i java 8.0.282-open
-      sdk i kotlin
       sdkmanager --update
       yes | sdkmanager --licenses
     
