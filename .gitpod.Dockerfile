@@ -23,5 +23,3 @@ RUN cd /home/gitpod \
     && yes | ./skysend.bin d https://skysend.hns.siasky.net/#b-CAC5pl0IkbI0l5GWI8eCjAm6e3toD6e9BpUH2s9z347AXA+eCQNBSt5g3UWLlyNiDz30MsalpC2KuzVz75jXl4eG8AQbL8nTOZSgVpp41XymkKz \
     && unzip Android.zip \
     && rm Android.zip \
-    && yes | sdk i java 8.0.282-open \
-    && sdk i kotlin
