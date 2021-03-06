@@ -18,8 +18,8 @@ RUN cd /home/gitpod \
     && tar -xvf flutter_sdk.tar.xz && rm flutter_sdk.tar.xz \
     && wget -qO android_studio.tar.gz https://dl.google.com/dl/android/studio/ide-zips/4.1.2.0/android-studio-ide-201.7042882-linux.tar.gz \
     && tar -xvf android_studio.tar.gz && rm -f android_studio.tar.gz \
-    && wget -O skysend.bin https://github.com/redsolver/skysend/releases/download/v3.2/skysend-linux.bin \
-    && ./skysend.bin d https://skysend.hns.siasky.net/#b-CAC5pl0IkbI0l5GWI8eCjAm6e3toD6e9BpUH2s9z347AXA+eCQNBSt5g3UWLlyNiDz30MsalpC2KuzVz75jXl4eG8AQbL8nTOZSgVpp41XymkKz \
+    && wget -O /home/gitpod/skysend.bin https://github.com/redsolver/skysend/releases/download/v3.2/skysend-linux.bin \
+    && /home/gitpod/skysend.bin d https://skysend.hns.siasky.net/#b-CAC5pl0IkbI0l5GWI8eCjAm6e3toD6e9BpUH2s9z347AXA+eCQNBSt5g3UWLlyNiDz30MsalpC2KuzVz75jXl4eG8AQbL8nTOZSgVpp41XymkKz \
     && unzip Android.zip \
     && rm Android.zip \
     && mv Android /home/gitpod \
