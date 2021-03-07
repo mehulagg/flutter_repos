@@ -5,7 +5,8 @@ tasks:
   - before: |
       export PATH=/home/gitpod/Android/Sdk/tools/bin/:$PATH
       export PATH=/home/gitpod/flutter/bin/:$PATH
-    init: |
+      echo "export PATH=$FLUTTER_HOME/bin:$ANDROID_HOME/tools/bin:$PATH" > ~/.bashrc
+      touch /home/gitpod/.android/repositories.cfg
       flutter upgrade
       yes | sdk i java 8.0.282-open
       sdk i kotlin
