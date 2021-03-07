@@ -9,6 +9,7 @@ tasks:
       touch /home/gitpod/.android/repositories.cfg
       sdkmanager --update
       yes | sdkmanager --licenses
+    init: flutter run -d web-server --web-renderer canvaskit
     
 vscode:
   extensions:
