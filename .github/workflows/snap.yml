@@ -29,13 +29,11 @@ jobs:
         uses: samuelmeuli/action-snapcraft@v1
         with:
           use_lxd: true
-      - name: Add current user to lxd group
-        run: sudo usermod -a -G lxd runner
-      
+
       - name: Build snap
         run: |
           cd personal_expenses
-          snapcraft --use-lxd
+          sg lxd -c 'snapcraft --use-lxd'
           
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.2
