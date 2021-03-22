@@ -33,6 +33,7 @@ jobs:
       - name: Build snap
         run: |
           cd personal_expenses
+          sudo usermod -a -G lxd mehul
           snapcraft --use-lxd
           
       - name: Upload a Build Artifact
