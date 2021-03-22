@@ -1,0 +1,28 @@
+name: personal-expenses
+version: 0.1.0
+summary: Super Cool App
+description: Super Cool App that does everything!
+
+confinement: strict
+base: core18
+grade: stable
+
+slots:
+  dbus-personal-expenses: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: org.learn.personal_expenses # adjust accordingly to your app name and
+
+apps:
+  personal-expenses:
+    command: personal_expenses
+    extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
+    plugs:
+      - network
+    slots:
+      - dbus-personal-expenses
+parts:
+  personal-expenses:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application
