@@ -3,9 +3,9 @@ version: 0.1.0
 summary: Super Cool App
 description: Super Cool App that does everything!
 
-confinement: strict
+confinement: devmode
 base: core18
-grade: stable
+grade: devel
 
 slots:
   dbus-personal-expenses: # adjust accordingly to your app name
