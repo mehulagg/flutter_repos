@@ -41,5 +41,4 @@ jobs:
           # Artifact name
           name: personal_expenses_snap # optional, default is artifact
           # A file, directory or wildcard pattern that describes what to upload
-          path: /**/*.snap
-          
+          path: /home/runner/work/**/*.snap
