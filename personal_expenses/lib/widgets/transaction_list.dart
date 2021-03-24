@@ -22,6 +22,7 @@ class _TransactionListState extends State<TransactionList>
 
   Artboard _riveArtboard;
   RiveAnimationController _controller;
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +54,13 @@ class _TransactionListState extends State<TransactionList>
       child: widget.transactions.isEmpty
           ? Column(
               children: [
-                Text('No transactions added yet'),
+                Text(
+                  'No transactions added yet',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   height: 400,
                   child: _riveArtboard == null
@@ -61,6 +68,9 @@ class _TransactionListState extends State<TransactionList>
                       : Rive(
                           artboard: _riveArtboard,
                         ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 ElevatedButton(
                   onPressed: _togglePlay,
