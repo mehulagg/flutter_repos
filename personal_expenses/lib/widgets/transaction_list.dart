@@ -1,3 +1,5 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -6,7 +8,8 @@ import 'package:rive/rive.dart';
 
 class TransactionList extends StatefulWidget {
   final List<Transaction> transactions;
-  TransactionList(this.transactions);
+  final Function deleteTx;
+  TransactionList(this.transactions, this.deleteTx);
 
   @override
   _TransactionListState createState() => _TransactionListState();
@@ -49,95 +52,88 @@ class _TransactionListState extends State<TransactionList>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 500,
-      child: widget.transactions.isEmpty
-          ? Column(
+    return widget.transactions.isEmpty
+        ? SingleChildScrollView(
+            child: Column(
               children: [
                 Text(
                   'No transactions added yet',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 400,
-                  child: _riveArtboard == null
-                      ? const SizedBox()
-                      : Rive(
-                          artboard: _riveArtboard,
-                        ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(
-                  onPressed: _togglePlay,
-                  child: Icon(
-                    isPlaying ? Icons.pause : Icons.play_arrow,
-                  ),
-                )
+                // SizedBox(
+                //   height: 10,
+                // ),
+                // Container(
+                //   height: MediaQuery.of(context).size.height * 0.4,
+                //   child: _riveArtboard == null
+                //       ? const SizedBox()
+                //       : Rive(
+                //           artboard: _riveArtboard,
+                //         ),
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+                // ElevatedButton(
+                //   onPressed: _togglePlay,
+                //   child: Icon(
+                //     isPlaying ? Icons.pause : Icons.play_arrow,
+                //   ),
+                // )
               ],
-            )
-          : ListView.builder(
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onLongPress: () {
-                    setState(() {
-                      widget.transactions.removeAt(index);
-                    });
-                  },
-                  child: Card(
-                    shadowColor: Colors.grey,
-                    elevation: 5,
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 15,
-                          ),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              side: BorderSide(
-                                width: 2,
-                                color: Theme.of(context).primaryColorDark,
-                              ),
-                            ),
-                          ),
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            '\$ ${widget.transactions[index].amount.toStringAsFixed(2)}',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Theme.of(context).primaryColor),
-                          ),
+            ),
+          )
+        : ListView.builder(
+            itemBuilder: (context, index) {
+              return Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+                child: ListTile(
+                  leading: Container(
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                        side: BorderSide(
+                          width: 2,
+                          color: Theme.of(context).primaryColorDark,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(widget.transactions[index].title,
-                                style: Theme.of(context).textTheme.headline6),
-                            Text(
-                              DateFormat.yMMMd()
-                                  .format(widget.transactions[index].date),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                  color: Colors.blueGrey[600]),
-                            ),
-                          ],
-                        )
-                      ],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: FittedBox(
+                        child: Text(
+                            "\$${widget.transactions[index].amount.toStringAsFixed(2)}"),
+                      ),
                     ),
                   ),
-                );
-              },
-              itemCount: widget.transactions.length,
-            ),
-    );
+                  title: Text(
+                    widget.transactions[index].title,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  subtitle: Text(
+                    DateFormat.yMMMd().format(widget.transactions[index].date),
+                  ),
+                  trailing: MediaQuery.of(context).size.width > 460
+                      ? TextButton.icon(
+                          style: TextButton.styleFrom(
+                            primary: Theme.of(context).errorColor,
+                          ),
+                          icon: Icon(CupertinoIcons.delete),
+                          label: Text('Delete'),
+                          onPressed: () =>
+                              widget.deleteTx(widget.transactions[index].id),
+                        )
+                      : IconButton(
+                          icon: Icon(FluentIcons.delete_24_filled),
+                          color: Theme.of(context).errorColor,
+                          onPressed: () =>
+                              widget.deleteTx(widget.transactions[index].id),
+                        ),
+                ),
+              );
+            },
+            itemCount: widget.transactions.length,
+          );
   }
 }

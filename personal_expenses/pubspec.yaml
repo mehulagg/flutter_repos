@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  fluentui_system_icons: ^1.1.112
   intl: ^0.17.0
   rive: ^0.6.8
 
