@@ -1,5 +1,4 @@
-image:
-  file: .gitpod.Dockerfile
+image: ghcr.io/mehulagg/flutter_gitpod:latest
 
 tasks:
   - before: |
