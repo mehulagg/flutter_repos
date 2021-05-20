@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,19 +43,19 @@ class MyApp extends StatelessWidget {
               )),
         ),
       ),
-      darkTheme: ThemeData.dark().copyWith(
-          primaryColor: Colors.deepPurple,
-          primaryColorLight: Colors.purple,
-          primaryColorDark: Colors.deepPurple,
-          accentColor: Colors.amberAccent,
-          buttonColor: Colors.deepPurple,
-          elevatedButtonTheme: ElevatedButtonThemeData(
-              style:
-                  ElevatedButton.styleFrom(primary: Colors.deepPurpleAccent)),
-          textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(primary: Colors.deepPurpleAccent)),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Colors.amberAccent)),
+      // darkTheme: ThemeData.dark().copyWith(
+      //     primaryColor: Colors.deepPurple,
+      //     primaryColorLight: Colors.purple,
+      //     primaryColorDark: Colors.deepPurple,
+      //     accentColor: Colors.amberAccent,
+      //     buttonColor: Colors.deepPurple,
+      //     elevatedButtonTheme: ElevatedButtonThemeData(
+      //         style:
+      //             ElevatedButton.styleFrom(primary: Colors.deepPurpleAccent)),
+      //     textButtonTheme: TextButtonThemeData(
+      //         style: TextButton.styleFrom(primary: Colors.deepPurpleAccent)),
+      //     floatingActionButtonTheme: FloatingActionButtonThemeData(
+      //         backgroundColor: Colors.amberAccent)),
       // themeMode: ThemeMode.dark,
       home: MyHomePage(),
     );
@@ -127,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final PreferredSizeWidget appBar = Platform.isLinux
+    final PreferredSizeWidget appBar = (kIsWeb || Platform.isLinux)
         ? CupertinoNavigationBar(
             middle: Text('Personal expenses'),
             trailing: GestureDetector(
@@ -193,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
-    return Platform.isLinux
+    return (kIsWeb || Platform.isLinux)
         ? CupertinoPageScaffold(
             navigationBar: appBar,
             child: pageBody,
@@ -201,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
         : Scaffold(
             appBar: appBar,
             body: pageBody,
-            floatingActionButton: Platform.isLinux
+            floatingActionButton: (kIsWeb || Platform.isLinux)
                 ? Container()
                 : FloatingActionButton(
                     child: Icon(Icons.add),

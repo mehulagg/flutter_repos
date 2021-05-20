@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -35,15 +36,13 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   void _presentDatePicker() {
-    Platform.isLinux
+    (kIsWeb || Platform.isLinux)
         ? showCupertinoModalPopup(
             context: context,
             builder: (context) => CupertinoActionSheet(
               actions: [
                 Container(
-                  height: MediaQuery.of(context).size.height 
-                         *
-                    0.4,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   child: CupertinoDatePicker(
                     mode: CupertinoDatePickerMode.date,
                     onDateTimeChanged: (pickedDate) {
@@ -88,6 +87,28 @@ class _NewTransactionState extends State<NewTransaction> {
             });
           });
   }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _titleController.addListener(() {
+  //     final String text = _titleController.text;
+  //     _titleController.value = _titleController.value.copyWith(
+  //       text: text,
+  //       selection: TextSelection(
+  //         baseOffset: text.length,
+  //         extentOffset: text.length,
+  //       ),
+  //       composing: TextRange.empty,
+  //     );
+  //   });
+  // }
+
+  // @override
+  // void dispose() {
+  //   _titleController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +161,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   ],
                 ),
               ),
-              Platform.isLinux
+              (kIsWeb || Platform.isLinux)
                   ? CupertinoButton.filled(
                       onPressed: _submitData,
                       child: Text(

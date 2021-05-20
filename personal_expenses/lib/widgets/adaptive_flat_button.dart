@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +8,11 @@ class AdaptiveFlatButton extends StatelessWidget {
   final String text;
   final Function handler;
 
-  const AdaptiveFlatButton( this.text, this.handler) ;
+  const AdaptiveFlatButton(this.text, this.handler);
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isLinux
+    return (kIsWeb || Platform.isLinux)
         ? CupertinoButton(
             child: Text(
               text,

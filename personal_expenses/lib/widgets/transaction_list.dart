@@ -60,7 +60,7 @@ class _TransactionListState extends State<TransactionList>
                   'No transactions added yet',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                // SizedBox(
+                // const SizedBox(
                 //   height: 10,
                 // ),
                 // Container(
@@ -71,7 +71,7 @@ class _TransactionListState extends State<TransactionList>
                 //           artboard: _riveArtboard,
                 //         ),
                 // ),
-                // SizedBox(
+                // const SizedBox(
                 //   height: 10,
                 // ),
                 // ElevatedButton(
@@ -119,13 +119,13 @@ class _TransactionListState extends State<TransactionList>
                           style: TextButton.styleFrom(
                             primary: Theme.of(context).errorColor,
                           ),
-                          icon: Icon(CupertinoIcons.delete),
-                          label: Text('Delete'),
+                          icon: const Icon(CupertinoIcons.delete),
+                          label: const Text('Delete'),
                           onPressed: () =>
                               widget.deleteTx(widget.transactions[index].id),
                         )
                       : IconButton(
-                          icon: Icon(FluentIcons.delete_24_filled),
+                          icon: const Icon(FluentIcons.delete_24_filled),
                           color: Theme.of(context).errorColor,
                           onPressed: () =>
                               widget.deleteTx(widget.transactions[index].id),
