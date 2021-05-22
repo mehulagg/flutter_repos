@@ -60,26 +60,26 @@ class _TransactionListState extends State<TransactionList>
                   'No transactions added yet',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // Container(
-                //   height: MediaQuery.of(context).size.height * 0.4,
-                //   child: _riveArtboard == null
-                //       ? const SizedBox()
-                //       : Rive(
-                //           artboard: _riveArtboard,
-                //         ),
-                // ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // ElevatedButton(
-                //   onPressed: _togglePlay,
-                //   child: Icon(
-                //     isPlaying ? Icons.pause : Icons.play_arrow,
-                //   ),
-                // )
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: _riveArtboard == null
+                      ? const SizedBox()
+                      : Rive(
+                          artboard: _riveArtboard,
+                        ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: _togglePlay,
+                  child: Icon(
+                    isPlaying ? Icons.pause : Icons.play_arrow,
+                  ),
+                )
               ],
             ),
           )

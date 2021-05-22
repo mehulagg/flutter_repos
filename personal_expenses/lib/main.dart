@@ -1,14 +1,11 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:universal_platform/universal_platform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:personal_expenses/widgets/chart.dart';
 import 'package:personal_expenses/widgets/new_transaction.dart';
 import 'package:personal_expenses/widgets/transaction_list.dart';
-
 import 'models/transaction.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -124,27 +121,72 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  List<Widget> _buildLandscapeContent(MediaQueryData mediaQuery,
+      PreferredSizeWidget appBar, Widget txListWidget) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Show Chart',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          CupertinoSwitch(
+            value: _showChart,
+            onChanged: (value) {
+              setState(() {
+                _showChart = value;
+              });
+            },
+          ),
+        ],
+      ),
+      _showChart
+          ? Container(
+              height: (mediaQuery.size.height -
+                      appBar.preferredSize.height -
+                      mediaQuery.padding.top) *
+                  0.7,
+              child: Chart(_recentTransactions))
+          : txListWidget
+    ];
+  }
+
+  List<Widget> _buildPortraitContent(MediaQueryData mediaQuery,
+      PreferredSizeWidget appBar, Widget txListWidget) {
+    return [
+      Container(
+          height: (mediaQuery.size.height -
+                  appBar.preferredSize.height -
+                  mediaQuery.padding.top) *
+              0.3,
+          child: Chart(_recentTransactions)),
+      txListWidget
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final PreferredSizeWidget appBar = (kIsWeb || Platform.isLinux)
-        ? CupertinoNavigationBar(
-            middle: Text('Personal expenses'),
-            trailing: GestureDetector(
-              child: Icon(CupertinoIcons.add),
-              onTap: () => _startNewTransaction(context),
-            ),
-          )
-        : AppBar(
-            title: Text('Personal expenses'),
-            actions: [
-              IconButton(
-                onPressed: () => _startNewTransaction(context),
-                icon: Icon(Icons.add),
+    final PreferredSizeWidget appBar =
+        (UniversalPlatform.isLinux || UniversalPlatform.isWeb)
+            ? CupertinoNavigationBar(
+                middle: Text('Personal expenses'),
+                trailing: GestureDetector(
+                  child: Icon(CupertinoIcons.add),
+                  onTap: () => _startNewTransaction(context),
+                ),
               )
-            ],
-          );
+            : AppBar(
+                title: Text('Personal expenses'),
+                actions: [
+                  IconButton(
+                    onPressed: () => _startNewTransaction(context),
+                    icon: Icon(Icons.add),
+                  )
+                ],
+              );
     final txListWidget = Container(
       height: (mediaQuery.size.height -
               appBar.preferredSize.height -
@@ -157,44 +199,21 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (isLandscape)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Show Chart',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                CupertinoSwitch(
-                  value: _showChart,
-                  onChanged: (value) {
-                    setState(() {
-                      _showChart = value;
-                    });
-                  },
-                ),
-              ],
+            ..._buildLandscapeContent(
+              mediaQuery,
+              appBar,
+              txListWidget,
             ),
           if (!isLandscape)
-            Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(_recentTransactions)),
-          if (!isLandscape) txListWidget,
-          if (isLandscape)
-            _showChart
-                ? Container(
-                    height: (mediaQuery.size.height -
-                            appBar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.7,
-                    child: Chart(_recentTransactions))
-                : txListWidget,
+            ..._buildPortraitContent(
+              mediaQuery,
+              appBar,
+              txListWidget,
+            ),
         ],
       ),
     );
-    return (kIsWeb || Platform.isLinux)
+    return (UniversalPlatform.isLinux || UniversalPlatform.isWeb)
         ? CupertinoPageScaffold(
             navigationBar: appBar,
             child: pageBody,
@@ -202,12 +221,13 @@ class _MyHomePageState extends State<MyHomePage> {
         : Scaffold(
             appBar: appBar,
             body: pageBody,
-            floatingActionButton: (kIsWeb || Platform.isLinux)
-                ? Container()
-                : FloatingActionButton(
-                    child: Icon(Icons.add),
-                    onPressed: () => _startNewTransaction(context),
-                  ),
+            floatingActionButton:
+                (UniversalPlatform.isLinux || UniversalPlatform.isWeb)
+                    ? Container()
+                    : FloatingActionButton(
+                        child: Icon(Icons.add),
+                        onPressed: () => _startNewTransaction(context),
+                      ),
           );
   }
 }

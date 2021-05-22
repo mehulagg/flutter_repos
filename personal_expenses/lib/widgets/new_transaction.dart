@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_platform/universal_platform.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/cupertino.dart';
@@ -36,7 +36,7 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   void _presentDatePicker() {
-    (kIsWeb || Platform.isLinux)
+    (UniversalPlatform.isLinux || UniversalPlatform.isWeb)
         ? showCupertinoModalPopup(
             context: context,
             builder: (context) => CupertinoActionSheet(
@@ -161,7 +161,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   ],
                 ),
               ),
-              (kIsWeb || Platform.isLinux)
+              (UniversalPlatform.isLinux || UniversalPlatform.isWeb)
                   ? CupertinoButton.filled(
                       onPressed: _submitData,
                       child: Text(
