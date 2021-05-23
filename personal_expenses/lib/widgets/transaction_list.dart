@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:personal_expenses/models/transaction.dart';
 import 'package:rive/rive.dart';
 
+import 'transaction_item.dart';
+
 class TransactionList extends StatefulWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
@@ -85,52 +87,9 @@ class _TransactionListState extends State<TransactionList>
           )
         : ListView.builder(
             itemBuilder: (context, index) {
-              return Card(
-                elevation: 5,
-                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-                child: ListTile(
-                  leading: Container(
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7),
-                        side: BorderSide(
-                          width: 2,
-                          color: Theme.of(context).primaryColorDark,
-                        ),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: FittedBox(
-                        child: Text(
-                            "\$${widget.transactions[index].amount.toStringAsFixed(2)}"),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    widget.transactions[index].title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  subtitle: Text(
-                    DateFormat.yMMMd().format(widget.transactions[index].date),
-                  ),
-                  trailing: MediaQuery.of(context).size.width > 460
-                      ? TextButton.icon(
-                          style: TextButton.styleFrom(
-                            primary: Theme.of(context).errorColor,
-                          ),
-                          icon: const Icon(CupertinoIcons.delete),
-                          label: const Text('Delete'),
-                          onPressed: () =>
-                              widget.deleteTx(widget.transactions[index].id),
-                        )
-                      : IconButton(
-                          icon: const Icon(FluentIcons.delete_24_filled),
-                          color: Theme.of(context).errorColor,
-                          onPressed: () =>
-                              widget.deleteTx(widget.transactions[index].id),
-                        ),
-                ),
+              return TransactionItem(
+                transaction: widget.transactions[index],
+                deleteTx: widget.deleteTx,
               );
             },
             itemCount: widget.transactions.length,
