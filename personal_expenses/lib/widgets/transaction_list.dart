@@ -85,14 +85,23 @@ class _TransactionListState extends State<TransactionList>
               ],
             ),
           )
-        : ListView.builder(
-            itemBuilder: (context, index) {
-              return TransactionItem(
-                transaction: widget.transactions[index],
-                deleteTx: widget.deleteTx,
-              );
-            },
-            itemCount: widget.transactions.length,
+        : ListView(
+            children: widget.transactions
+                .map((tx) => TransactionItem(
+                      key: ValueKey(tx.id),
+                      transaction: tx,
+                      deleteTx: widget.deleteTx,
+                    ))
+                .toList(),
+            // : ListView.builder(
+            //     itemBuilder: (context, index) {
+            //       return TransactionItem(
+            //         key: ValueKey(widget.transactions[index].id),
+            //         transaction: widget.transactions[index],
+            //         deleteTx: widget.deleteTx,
+            //       );
+            //     },
+            //     itemCount: widget.transactions.length,
           );
   }
 }

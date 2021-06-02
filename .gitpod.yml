@@ -20,3 +20,4 @@ vscode:
     - pkief.material-icon-theme
     - vscode-icons-team.vscode-icons
     - coenraads.bracket-pair-colorizer-2
+    - jeroen-meijer.pubspec-assist

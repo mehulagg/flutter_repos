@@ -30,9 +30,13 @@ class _TransactionItemState extends State<TransactionItem> {
       Colors.purple,
       Colors.amber,
       Colors.teal,
+      Colors.green,
+      Colors.blue,
+      Colors.orange,
+      Colors.deepPurple,
     ];
 
-    _bgColor = availableColors[Random().nextInt(4)];
+    _bgColor = availableColors[Random().nextInt(8)];
     super.initState();
   }
 
