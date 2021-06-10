@@ -1,0 +1,51 @@
+{
+    "name": "Flutter",
+    "image": "ghcr.io/mehulagg/codespaces_flutter:latest",
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+        // "terminal.integrated.shell.linux": "/bin/bash",
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "bash"
+            },
+            "zsh": {
+                "path": "zsh"
+            },
+            "fish": {
+                "path": "fish"
+            },
+            "tmux": {
+                "path": "tmux",
+                "icon": "terminal-tmux"
+            },
+            "pwsh": {
+                "path": "pwsh",
+                "icon": "terminal-powershell"
+            }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "dart-code.dart-code",
+        "dart-code.flutter",
+        "vscode-icons-team.vscode-icons",
+        "jeroen-meijer.pubspec-assist",
+        "mutantdino.resourcemonitor",
+        "kisstkondoros.vscode-gutter-preview",
+        "miguelsolorio.fluent-icons",
+        "coenraads.bracket-pair-colorizer"
+    ],
+    "postAttachCommand": [
+        "export PATH=/home/gitpod/Android/Sdk/tools/bin/:$PATH",
+        "export PATH=/home/gitpod/flutter/bin/:$PATH",
+        "echo 'export PATH=$FLUTTER_HOME/bin:$ANDROID_HOME/tools/bin:$PATH' > ~/.bashrc",
+        "flutter upgrade"
+    ],
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // "postCreateCommand": "uname -a",
+    // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "codespace"
+}
