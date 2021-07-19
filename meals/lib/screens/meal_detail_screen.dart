@@ -1,8 +1,14 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:meals/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+
+  final Function toggleFavorites;
+  final Function isFavorite;
+
+  const MealDetailScreen(this.toggleFavorites, this.isFavorite);
 
   Widget buildSectionTilte(BuildContext context, String text) {
     return Container(
@@ -83,10 +89,10 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pop(mealId);
-        },
-        child: Icon(Icons.delete),
+        onPressed: () => toggleFavorites(mealId),
+        child: Icon(
+          isFavorite(mealId) ? Icons.star_rounded : Icons.star_border_rounded,
+        ),
       ),
     );
   }
