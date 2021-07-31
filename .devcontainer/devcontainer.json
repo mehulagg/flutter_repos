@@ -23,7 +23,7 @@
         "icon": "terminal-powershell"
       }
     },
-    "terminal.integrated.defaultProfile.linux": "bash"
+    "terminal.integrated.defaultProfile.linux": "zsh"
   },
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
@@ -39,7 +39,8 @@
   "postCreateCommand": [
     "export PATH=/home/codespace/Android/Sdk/tools/bin:$PATH",
     "export PATH=/home/codespace/flutter/bin:$PATH",
-    "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' > ~/.bashrc",
+    "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.bashrc",
+    "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.zshrc",
     "flutter upgrade",
     "cd meals",
     "flutter run -d web-server --web-hostname=0.0.0.0"
