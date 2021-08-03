@@ -36,14 +36,12 @@
     "miguelsolorio.fluent-icons",
     "coenraads.bracket-pair-colorizer"
   ],
-  "postCreateCommand": [
+  "postAttachCommand": [
     "export PATH=/home/codespace/Android/Sdk/tools/bin:$PATH",
     "export PATH=/home/codespace/flutter/bin:$PATH",
     "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.bashrc",
     "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.zshrc",
     "flutter upgrade",
-    "cd meals",
-    "flutter run -d web-server --web-hostname=0.0.0.0"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
