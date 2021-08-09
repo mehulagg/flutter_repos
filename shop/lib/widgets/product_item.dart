@@ -8,6 +8,7 @@ class ProductItem extends StatelessWidget {
   // final String title;
   // final String imageUrl;
 
+
   // const ProductItem(this.id, this.title, this.imageUrl);
 
   @override
@@ -30,7 +31,7 @@ class ProductItem extends StatelessWidget {
         ),
         footer: GridTileBar(
           leading: Consumer<Product>(
-            builder: (ctx, product, child) => IconButton(
+            builder: (ctx, product, _) => IconButton(
               onPressed: () {
                 product.toggleFavoriteStatus();
               },
