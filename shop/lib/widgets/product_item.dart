@@ -1,6 +1,8 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/product.dart';
+import 'package:shop/screens/cart.dart';
 import 'package:shop/screens/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
@@ -8,12 +10,12 @@ class ProductItem extends StatelessWidget {
   // final String title;
   // final String imageUrl;
 
-
   // const ProductItem(this.id, this.title, this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
+    final cart = Provider.of<Cart>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -47,9 +49,11 @@ class ProductItem extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(product.id, product.price, product.title);
+            },
             icon: Icon(
-              Icons.shopping_cart_rounded,
+              FluentIcons.shopping_bag_24_regular,
               color: Theme.of(context).accentColor,
             ),
           ),
