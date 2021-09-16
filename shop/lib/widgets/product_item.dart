@@ -39,7 +39,7 @@ class ProductItem extends StatelessWidget {
               },
               icon: Icon(
                 product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),
@@ -54,7 +54,7 @@ class ProductItem extends StatelessWidget {
             },
             icon: Icon(
               FluentIcons.shopping_bag_24_regular,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ),
