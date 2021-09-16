@@ -2,7 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/products.dart';
-import 'package:shop/screens/cart.dart';
+import 'package:shop/providers/cart.dart';
 import 'package:shop/widgets/badge.dart';
 import 'package:shop/widgets/products_grid.dart';
 

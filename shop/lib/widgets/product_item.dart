@@ -2,7 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/product.dart';
-import 'package:shop/screens/cart.dart';
+import 'package:shop/providers/cart.dart';
 import 'package:shop/screens/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
