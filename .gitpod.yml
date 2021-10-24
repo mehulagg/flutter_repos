@@ -12,6 +12,7 @@ tasks:
       touch /home/gitpod/.android/repositories.cfg
       sdkmanager --update
       yes | sdkmanager --licenses
+  - command: |
       sdkmanager --install "cmdline-tools;latest"
       flutter doctor --android-licenses
 
