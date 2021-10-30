@@ -1,13 +1,12 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/providers/products.dart';
 import 'package:shop/providers/cart.dart';
 import 'package:shop/widgets/badge.dart';
 import 'package:shop/widgets/products_grid.dart';
 
 enum FilterOptions {
-  Favorites,
+  favorites,
   all,
 }
 
@@ -23,12 +22,12 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MyShop'),
+        title: const Text('MyShop'),
         actions: [
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
               setState(() {
-                if (selectedValue == FilterOptions.Favorites) {
+                if (selectedValue == FilterOptions.favorites) {
                   _showFavoritesOnly = true;
                 } else {
                   _showFavoritesOnly = false;
@@ -36,11 +35,11 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               });
             },
             itemBuilder: (_) => [
-              PopupMenuItem(
+              const PopupMenuItem(
                 child: Text('Only favorites'),
-                value: FilterOptions.Favorites,
+                value: FilterOptions.favorites,
               ),
-              PopupMenuItem(
+              const PopupMenuItem(
                 child: Text('Show all'),
                 value: FilterOptions.all,
               ),
@@ -53,7 +52,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             ),
             child: IconButton(
               onPressed: () {},
-              icon: Icon(FluentIcons.shopping_bag_24_filled),
+              icon: const Icon(FluentIcons.shopping_bag_24_filled),
             ),
           ),
         ],
