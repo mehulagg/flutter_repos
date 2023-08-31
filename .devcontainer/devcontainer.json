@@ -1,6 +1,6 @@
 {
   "name": "Flutter",
-  "image": "ghcr.io/mehulagg/codespaces_flutter:latest",
+  "image": "ghcr.io/cirruslabs/flutter:stable",
   // Set *default* container specific settings.json values on container create.
   "settings": {
     // "terminal.integrated.shell.linux": "/bin/bash",
@@ -35,13 +35,13 @@
     "miguelsolorio.fluent-icons",
     "coenraads.bracket-pair-colorizer"
   ],
-  "postAttachCommand": [
-    "export PATH=/home/codespace/Android/Sdk/tools/bin:$PATH",
-    "export PATH=/home/codespace/flutter/bin:$PATH",
-    "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.bashrc",
-    "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.zshrc",
-    "flutter upgrade",
-  ],
+  // "postAttachCommand": [
+  //   "export PATH=/home/codespace/Android/Sdk/tools/bin:$PATH",
+  //   "export PATH=/home/codespace/flutter/bin:$PATH",
+  //   "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.bashrc",
+  //   "echo 'export PATH=/home/codespace/flutter/bin:/home/codespace/Android/Sdk/tools/bin:$PATH' >> ~/.zshrc",
+  //   "flutter upgrade",
+  // ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
